@@ -22,14 +22,16 @@ voltageThreshold = 1.5 ## Volt
 
 
 plt.ion()
-fig=plt.figure(figsize=(16,9), dpi=60)
+plt.style.use('dark_background')
+fig=plt.figure()
 def plotting():
 	plt.title('Osciloscope')
 	plt.grid(True)
-	plt.ylabel('Voltage')
+	plt.ylabel('Voltage (V)', loc='top')
+	plt.xlabel('a.u.', loc='right')
 	plt.ylim(ymin, ymax)
-	plt.plot(x, y, '.b-', label='channel #0')
-	plt.legend(loc='lower right')
+	plt.plot(x, y, '.-', linewidth=1.5, label='channel #0') #, color='y'
+	plt.legend(loc='upper right')
 	plt.show()
 	plt.pause(0.0001)
 
@@ -48,9 +50,9 @@ def discriminator(voltage, signalDate):
 			####
 
 			#### Always show the signal at the middle of the histogram!
-			for i in range(0, int(xMax/2)): x.append(i); y.append(0.0)
-			for j in range(0, len(fooVoltArr)): x.append(int(xMax/2)+j); y.append(y_filtered[j])
-			for k in range(int(xMax/2)+len(fooVoltArr)+1, xMax): x.append(k); y.append(0.0)
+			for i in range(0, int(xMax/4)): x.append(i); y.append(0.0)
+			for j in range(0, len(fooVoltArr)): x.append(int(xMax/4)+j); y.append(y_filtered[j])
+			for k in range(int(xMax/4)+len(fooVoltArr)+1, xMax): x.append(k); y.append(0.0)
 			####
 
 			#### Plotting and clearing lists & figure!
