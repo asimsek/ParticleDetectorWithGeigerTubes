@@ -75,12 +75,15 @@ def dataTake(ch=0):
 	##### Start Data Taking
 	with open(outTextFile, 'w') as f:
 		dateC = -1
-		while True:
-			dateC += 1
-			valueC = raw_adc.read( channel = ch ) / 1023.0 * 3.3
-			
-			### Signal-BG Discrimination
-			discriminator(voltage = valueC, signalDate = dateC)
+		try:
+			while True:
+				dateC += 1
+				valueC = raw_adc.read( channel = ch ) / 1023.0 * 3.3
+				
+				### Signal-BG Discrimination
+				discriminator(voltage = valueC, signalDate = dateC)
+		except KeyboardInterrupt:
+			pass
 
 
 if __name__== "__main__":
